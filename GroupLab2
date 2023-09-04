@@ -1,0 +1,79 @@
+
+/**
+ * This class performs binary and linear searches to search for a target in an array of given names.
+ * 
+ * @author Manuel Herrera
+ * @since 09/01/23
+ *
+ */
+public class GroupLab2 {
+
+	
+	/**
+	 *  This demonstrates searching for a String target in an array using both linear and binary search.
+	 *
+	 * @param args The command-line arguments
+	 */
+	public static void main(String[] args) {
+
+		String[] names = {"John", "Mary", "David", "Sarah", "James", "Michael", "Liam", "Robert"};
+		int namesSize = 8;
+		String target = "John";
+		int targetIndex;
+
+		targetIndex = binarySearch(names, namesSize, target);
+
+		
+		if (targetIndex!= -1) {
+			
+		System.out.println("'" + target + "' was found at index: " + targetIndex);
+		
+		} 
+		else {
+			
+			System.out.println("'" + target + "' was not found in the array.");
+			
+		}
+
+	}
+
+
+
+
+	/**
+	 * Performs a binary search to find a key in the given array.
+	 * @param names Array containing names to search within.
+	 * @param namesSize Length of the names array.
+	 * @param key The name being searched for in the array.
+	 * @return
+	 */
+	public static int binarySearch(String[] names, int namesSize, String key) {
+
+		int low = 0;
+		int high = namesSize - 1;
+
+		while (low <= high) {
+
+			int mid = low + (high - low) / 2;
+
+// Compare middle element with the key
+			int comparison = key.compareToIgnoreCase(names[mid]);
+
+			if (comparison == 0) {
+				
+				return mid;
+				
+			} else if (comparison < 0) {
+				
+				high = mid - 1;
+			} else {
+				
+				low = mid + 1;
+			}
+		}
+
+// Key not found in the array
+		return -1;
+	}
+
+}
